@@ -38,7 +38,7 @@ RUN set -eux; \
     tar --extract --directory sanjuuni --strip-components=1 --file=sanjuuni.tar.gz; \
     rm sanjuuni.tar.gz;
 
-WORKDIR /home/container/sanjuuni
+WORKDIR sanjuuni
 
 RUN set -eux; \
     ./configure; \
@@ -47,7 +47,7 @@ RUN set -eux; \
 # Build the Python environment
 FROM ghcr.io/commandcracker/alpine-pypy3.10-pip:3.20.1-pypy-7.3.14-pip-24.1.1 AS builder
 
-WORKDIR /home/container/
+WORKDIR /home/container
 
 COPY requirements.txt ./
 COPY youcube ./youcube
