@@ -62,6 +62,8 @@ WORKDIR /home/container
 
 COPY requirements.txt ./
 COPY youcube ./youcube
+RUN ls -l; \
+    ls
 COPY compile.py ./
 
 RUN set -eux; \
