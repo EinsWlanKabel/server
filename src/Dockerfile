@@ -16,7 +16,14 @@ ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 # Copy the entrypoint script
+RUN pwd
+RUN ls
 COPY entrypoint.sh /entrypoint.sh
+RUN ls
+COPY ./entrypoint.sh /entrypoint.sh
+RUN ls
+COPY ./../entrypoint.sh /entrypoint.sh
+RUN ls
 RUN chmod +x /entrypoint.sh
 
 # Install ffmpeg from an external source
