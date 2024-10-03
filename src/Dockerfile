@@ -36,14 +36,17 @@ RUN set -eux; \
     echo "${SANJUUNI_SHA512SUM}" | sha512sum -c -; \
     mkdir --parents sanjuuni; \
     tar --extract --directory=sanjuuni --strip-components=1 --file=sanjuuni.tar.gz; \
-    rm sanjuuni.tar.gz;
+    rm sanjuuni.tar.gz; \
+    ls -l sanjuuni/*;  # List files to confirm extraction
 
 WORKDIR /home/container/sanjuuni
 
 RUN set -eux; \
+    ls -l;  # List files in the current directory to check for configure; \
     ./configure; \
     make; \
-    ls -l;  # List files in the current directory to check if sanjuuni is built
+    ls -l;  # List files again after make
+
 
 # Build the Python environment
 FROM ghcr.io/commandcracker/alpine-pypy3.10-pip:3.20.1-pypy-7.3.14-pip-24.1.1 AS builder
