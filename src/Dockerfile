@@ -1,3 +1,19 @@
+LABEL author="EinsWlanKabel" maintainer="EinsWlanKabel"
+
+LABEL org.opencontainers.image.source="https://github.com/EinsWlanKabel/server/tree/pterotest"
+LABEL org.opencontainers.image.licenses=MIT
+
+USER container
+ENV USER=container HOME=/home/container
+
+RUN apk add --update --no-cache cmake make ca-certificates curl ffmpeg g++ gcc git openssl sqlite tar tzdata \
+	&& adduser -D -h /home/container container
+
+WORKDIR /home/container
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+
 FROM ghcr.io/commandcracker/ffmpeg:latest AS ffmpeg
 
 FROM ffmpeg AS sanjuuni
@@ -20,7 +36,7 @@ RUN set -eux; \
   tar --extract --directory sanjuuni --strip-components=1 --file=sanjuuni.tar.gz; \
   rm sanjuuni.tar.gz;
 
-WORKDIR /sanjuuni
+WORKDIR /home/container/sanjuuni
 
 RUN set -eux; \
   ./configure; \
@@ -28,7 +44,7 @@ RUN set -eux; \
 
 FROM ghcr.io/commandcracker/alpine-pypy3.10-pip:3.20.1-pypy-7.3.14-pip-24.1.1 AS builder
 
-WORKDIR /
+WORKDIR /home/container/
 
 COPY requirements.txt .
 COPY youcube ./youcube
