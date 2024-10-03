@@ -28,7 +28,15 @@ FROM ffmpeg AS sanjuuni
 ENV SANJUUNI_VERSION=49cb275d4ef64d2bee3d5d2cbc5baf47787bedc2
 ARG SANJUUNI_SHA512SUM="22c85f9a5c16c0acb4dde971b64f53e765a8d607065e7a25115103925124e33a0680da3790e85c4343b7d320a0170b6ae096ec7f2b48b22582cf96681fd3a78c *sanjuuni.tar.gz"
 
+WORKDIR /home/container
+
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+
+WORKDIR /home/container
+
+RUN pwd; \
+    ls; \
+    ls -l;
 
 RUN set -eux; \
     apk add --no-cache g++ zlib-dev poco-dev make; \
