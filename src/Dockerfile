@@ -16,9 +16,9 @@ ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 # Copy the entrypoint script
-COPY ./entrypoint.sh /entrypoint.sh
-RUN ls -l; \
-    chmod +x /entrypoint.sh
+#COPY ./entrypoint.sh /entrypoint.sh
+#RUN ls -l; \
+#    chmod +x /entrypoint.sh
 
 # Install ffmpeg from an external source
 FROM ghcr.io/commandcracker/ffmpeg:latest AS ffmpeg
@@ -57,7 +57,7 @@ WORKDIR /home/container
 RUN pwd
 COPY entrypoint.sh ./entrypoint.sh
 RUN ls -l \
-    chmod +x /entrypoint.sh
+    chmod +x ./entrypoint.sh
 
 COPY requirements.txt ./
 COPY youcube ./youcube
