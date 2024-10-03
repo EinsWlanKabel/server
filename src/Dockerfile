@@ -102,5 +102,5 @@ USER 1000:1000
 COPY --from=builder /home/container/youcube/__pycache__ /opt/server
 
 # Set the entrypoint for the container
-#ENTRYPOINT ["python3", "youcube.pyc"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "/bin/ash", "/entrypoint.sh" ]
