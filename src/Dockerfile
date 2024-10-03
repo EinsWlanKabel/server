@@ -1,3 +1,5 @@
+FROM alpine:latest
+
 LABEL author="EinsWlanKabel" maintainer="EinsWlanKabel"
 
 LABEL org.opencontainers.image.source="https://github.com/EinsWlanKabel/server/tree/pterotest"
