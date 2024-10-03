@@ -17,13 +17,8 @@ WORKDIR /home/container
 
 # Copy the entrypoint script
 RUN pwd
-RUN ls -l
-COPY entrypoint.sh /entrypoint.sh
-RUN ls -l
 COPY ./entrypoint.sh /entrypoint.sh
-RUN ls -l
-COPY ./../entrypoint.sh /entrypoint.sh
-RUN ls -l
+RUN ls
 RUN chmod +x /entrypoint.sh
 
 # Install ffmpeg from an external source
@@ -59,6 +54,11 @@ RUN set -eux; \
 FROM ghcr.io/commandcracker/alpine-pypy3.10-pip:3.20.1-pypy-7.3.14-pip-24.1.1 AS builder
 
 WORKDIR /home/container
+
+RUN pwd
+COPY ./entrypoint.sh /entrypoint.sh
+RUN ls
+RUN chmod +x /entrypoint.sh
 
 COPY requirements.txt ./
 COPY youcube ./youcube
