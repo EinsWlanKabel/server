@@ -56,7 +56,7 @@ WORKDIR /home/container
 
 RUN pwd
 COPY entrypoint.sh ./entrypoint.sh
-RUN ls -l \
+RUN ls -l; \
     chmod +x ./entrypoint.sh
 
 COPY requirements.txt ./
