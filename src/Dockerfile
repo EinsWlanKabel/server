@@ -55,9 +55,9 @@ FROM ghcr.io/commandcracker/alpine-pypy3.10-pip:3.20.1-pypy-7.3.14-pip-24.1.1 AS
 WORKDIR /home/container
 
 RUN pwd
-COPY ./entrypoint.sh /entrypoint.sh
-RUN ls
-RUN chmod +x /entrypoint.sh
+COPY entrypoint.sh ./entrypoint.sh
+RUN ls -l \
+    chmod +x /entrypoint.sh
 
 COPY requirements.txt ./
 COPY youcube ./youcube
