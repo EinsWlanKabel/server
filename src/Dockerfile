@@ -16,10 +16,9 @@ ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 # Copy the entrypoint script
-RUN pwd
 COPY ./entrypoint.sh /entrypoint.sh
-RUN ls
-RUN chmod +x /entrypoint.sh
+RUN ls -l; \
+    chmod +x /entrypoint.sh
 
 # Install ffmpeg from an external source
 FROM ghcr.io/commandcracker/ffmpeg:latest AS ffmpeg
